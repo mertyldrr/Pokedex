@@ -9,7 +9,8 @@ const PokemonListReducer = (state = initialState, action) => {
         case "POKEMON_LIST_LOADING":
             return {
                 ...state,
-                loading: true
+                loading: true,
+                errorMessage: ""
             };
         case "POKEMON_LIST_FAIL":
             return {
@@ -22,7 +23,8 @@ const PokemonListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                data: action.payload
+                data: action.payload,
+                errorMessage: ""
             };
         default:
             return state

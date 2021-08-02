@@ -28,6 +28,25 @@ const PokemonListReducer = (state = initialState, action) => {
         errorMessage: "",
         count: action.payload.count
       };
+
+    case "SPECIFIC_POKEMON_SUCCESS":
+      const typesMap = action.payload.types.map((pokemon) => {
+        return pokemon.type.name;
+      })
+      return {
+        ...state,
+        data: state.data.map((pokemon) => action.payload.name === pokemon.name 
+        ? {...pokemon, types: typesMap} 
+        : pokemon),
+        loading: false,
+        errorMessage: ""
+      }
+    case "SPECIFIC_POKEMON_FAIL":
+      return {
+        ...state,
+        loading: false,
+        errorMessage: "unable to get pokemon"
+      };
     default:
       return state
   }

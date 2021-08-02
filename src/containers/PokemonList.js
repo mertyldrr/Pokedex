@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import _ from "lodash";
-import { GetPokemonList } from '../redux/actions/PokemonAction';
+import { GetPokemonList, GetSpecificPokemon } from '../redux/actions/PokemonAction';
 import { Button } from 'react-bootstrap';
 
 const PokemonList = () => {
@@ -12,6 +12,7 @@ const PokemonList = () => {
   useEffect(() => {
     const fetchData = (page = 1) => {
       dispatch(GetPokemonList(page));
+      dispatch(GetSpecificPokemon("bulbasaur"));
     }
     fetchData();
   }, [dispatch]);

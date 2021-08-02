@@ -21,3 +21,18 @@ export const GetPokemonList = (page) => async (dispatch) => {
     });
   }
 }
+
+export const GetSpecificPokemon = (name) => async (dispatch) => {
+  try {
+    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+
+    dispatch({
+      type: "SPECIFIC_POKEMON_SUCCESS",
+      payload: res.data
+    });
+  } catch (e) {
+    dispatch({
+      type: "SPECIFIC_POKEMON_FAIL"
+    });
+  }
+}

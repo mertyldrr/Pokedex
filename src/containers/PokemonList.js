@@ -12,11 +12,11 @@ const PokemonList = () => {
   useEffect(() => {
     const fetchData = (page = 1) => {
       dispatch(GetPokemonList(page));
-      dispatch(GetSpecificPokemon("bulbasaur"));
     }
-    fetchData();
-  }, [dispatch]);
 
+    fetchData();
+
+  }, [dispatch]);
 
   const showData = () => {
     if (!_.isEmpty(pokemonList.data)) {

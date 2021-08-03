@@ -30,14 +30,15 @@ const PokemonListReducer = (state = initialState, action) => {
       };
 
     case "SPECIFIC_POKEMON_SUCCESS":
-      const typesMap = action.payload.types.map((pokemon) => {
-        return pokemon.type.name;
+      const typesMap = action.payload.types.map((type) => {
+        return type.type.name;
       })
       return {
         ...state,
-        data: state.data.map((pokemon) => action.payload.name === pokemon.name 
-        ? {...pokemon, types: typesMap} 
-        : pokemon),
+        data: state.data.map((pokemon) => pokemon.name === action.payload.name 
+                                  ? {...pokemon, types: typesMap}
+                                  : pokemon
+      ),
         loading: false,
         errorMessage: ""
       }

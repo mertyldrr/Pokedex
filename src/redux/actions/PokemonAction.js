@@ -15,7 +15,7 @@ export const GetPokemonList = (page) => async (dispatch) => {
       payload: res.data,
     });
     res.data.results.forEach(pokemon => {
-      dispatch(GetSpecificPokemon(pokemon.name));
+      dispatch(GetTypes(pokemon.name));
     });
   } catch (e) {
     dispatch({
@@ -24,17 +24,38 @@ export const GetPokemonList = (page) => async (dispatch) => {
   }
 }
 
-export const GetSpecificPokemon = (name) => async (dispatch) => {
+export const GetTypes = (pokemon) => async (dispatch) => {
   try {
-    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
 
     dispatch({
-      type: "SPECIFIC_POKEMON_SUCCESS",
-      payload: res.data
+      type: "GET_TYPE_SUCCESS",
+      payload: res.data,
+      pokemonName: pokemon
     });
   } catch (e) {
     dispatch({
-      type: "SPECIFIC_POKEMON_FAIL"
+      type: "GET_TYPE_FAIL"
+    });
+  }
+}
+
+export const GetPokemon = (pokemon) => async (dispatch) => {
+  try {
+    dispatch({
+      type: "POKEMON_MULTIPLE_LOADING"
+    });
+
+    const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+    
+    dispatch({
+      type: "POKEMON_MULTIPLE_SUCCESS",
+      payload: res.data,
+      pokemonName: pokemon
+    });
+  } catch (e) {
+    dispatch({
+      type: "POKEMON_MULTIPLE_FAIL"
     });
   }
 }

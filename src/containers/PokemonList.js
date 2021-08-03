@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import _ from "lodash";
-import { GetPokemonList, GetSpecificPokemon } from '../redux/actions/PokemonAction';
+import { GetPokemonList } from '../redux/actions/PokemonAction';
 import { Button } from 'react-bootstrap';
 
 const PokemonList = () => {
@@ -24,7 +24,7 @@ const PokemonList = () => {
         <div className="pokemon-list-wrapper">
           {pokemonList.data.map((pokemon, index) => {
             return (
-              <div className="pokemon-list-element" key={index}>
+              <div className="pokemon-list-element p-1" key={index}>
                 <ListGroup>
                   <ListGroupItem action href={`/pokemon/${pokemon.name}`} variant="success">{pokemon.name}
                     <Button style={{ float: "right" }}>Test</Button>

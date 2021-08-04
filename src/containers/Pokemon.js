@@ -34,11 +34,32 @@ const Pokemon = (props) => {
               </Col>
             </Row>
 
+            <Row>
+              <Col>
+                <h1>Stats</h1>
+                {pokemonData.stats.map((element) => {
+                  return (
+                    <p>{element.stat.name} {element.base_stat}</p>
+                  )
+                })}
+              </Col>
+
+              <Col>
+                <h1>Abilities</h1>
+                {pokemonData.abilities.map((element) => {
+                  return (
+                    <p>{element.ability.name}</p>
+                  )
+                })}
+              </Col>
+
+            </Row>
+
           </div>
         </div>
       )
     }
-      
+
 
     if (pokemonState.loading)
       return <p>Loading...</p>

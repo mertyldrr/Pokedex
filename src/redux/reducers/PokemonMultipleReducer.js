@@ -28,7 +28,7 @@ const PokemonMultipleReducer = (state = initialState, action) => {
         data: {
           //becuase data is already an object, to create copy, we use ...state.data
           ...state.data,
-          [action.pokemonName]: action.payload  // [] for the variable
+          [action.pokemonName]: action.payload  // [] for the variable (pokemonName will be an array in redux global state)
         }
       };
 

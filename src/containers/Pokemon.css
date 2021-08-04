@@ -1,0 +1,11 @@
+.item {
+  text-align: center;
+}
+
+.col-normal {
+  background-color: coral;
+}
+
+.col-shiny {
+  background-color: cornflowerblue;
+}

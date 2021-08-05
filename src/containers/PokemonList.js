@@ -1,24 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import _ from "lodash";
 import { GetPokemonList } from '../redux/actions/PokemonAction';
-import { Button } from 'react-bootstrap';
+import ReactPaginate from 'react-paginate';
+import './PokemonList.css';
 
 const PokemonList = () => {
   const dispatch = useDispatch();
   const pokemonList = useSelector(state => state.PokemonList);
 
-  useEffect(() => {
-    const fetchData = (page = 1) => {
-      dispatch(GetPokemonList(page));
-    }
+  // fetchData is also used outside of useEffect, that is why I used useCallback() hook.
+  const fetchData = useCallback((page = 1) => { 
+    dispatch(GetPokemonList(page))
 
+  }, [dispatch])
+
+
+  // will trigger if the function's params change
+  useEffect(() => {
     fetchData();
 
-  }, [dispatch]);
+  }, [fetchData]);
 
   const showData = () => {
+
+    if (pokemonList.loading) {
+      return <p>Loading...</p>
+    }
+
     if (!_.isEmpty(pokemonList.data)) {
       return (
         <div className="pokemon-list-wrapper">
@@ -27,7 +37,6 @@ const PokemonList = () => {
               <div className="pokemon-list-element p-1" key={index}>
                 <ListGroup>
                   <ListGroupItem action href={`/pokemon/${pokemon.name}`} variant="success">{pokemon.name}
-                    <Button style={{ float: "right" }}>Test</Button>
                   </ListGroupItem>
                 </ListGroup>
               </div>
@@ -37,10 +46,6 @@ const PokemonList = () => {
       )
     }
 
-    if (pokemonList.loading) {
-      return <p>Loading...</p>
-    }
-
     if (pokemonList.errorMessage !== "") {
       return <p>{pokemonList.errorMessage}</p>
     }
@@ -48,6 +53,18 @@ const PokemonList = () => {
   return (
     <div>
       {showData()}
+      {!_.isEmpty(pokemonList.data) && (
+        <ReactPaginate
+          pageCount={Math.ceil(pokemonList.count / 15)}
+          pageRangeDisplayed={2}
+          marginPagesDisplayed={1}
+          onPageChange={(page) => fetchData(page.selected + 1)}
+          containerClassName={"pagination"}
+          pageLinkClassName={"page-link"}
+          previousLinkClassName={"previous-page"}
+          nextLinkClassName={"next-page"}
+        />
+      )}
     </div>
   )
 };

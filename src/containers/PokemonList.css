@@ -1,0 +1,26 @@
+.pagination {
+  width: 500px;
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  list-style: none;
+  justify-content: space-between;
+  padding: 0;
+  font-weight: 600;
+}
+
+.page-link {
+  font-size: 13px;
+}
+
+.previous-page {
+  color: coral;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+.next-page {
+  color: coral;
+  font-size: 17px;
+  text-decoration: none;
+}

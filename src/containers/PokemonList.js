@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback } from 'react';
-import { ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import _ from "lodash";
 import { GetPokemonList } from '../redux/actions/PokemonAction';
 import ReactPaginate from 'react-paginate';
+import SinglePokemon from '../components/SinglePokemon';
 import './PokemonList.css';
 
 const PokemonList = () => {
@@ -11,7 +11,7 @@ const PokemonList = () => {
   const pokemonList = useSelector(state => state.PokemonList);
 
   // fetchData is also used outside of useEffect, that is why I used useCallback() hook.
-  const fetchData = useCallback((page = 1) => { 
+  const fetchData = useCallback((page = 1) => {
     dispatch(GetPokemonList(page))
 
   }, [dispatch])
@@ -35,10 +35,7 @@ const PokemonList = () => {
           {pokemonList.data.map((pokemon, index) => {
             return (
               <div className="pokemon-list-element p-1" key={index}>
-                <ListGroup>
-                  <ListGroupItem action href={`/pokemon/${pokemon.name}`} variant="success">{pokemon.name}
-                  </ListGroupItem>
-                </ListGroup>
+                <SinglePokemon name={pokemon.name} sprite={pokemon.sprite} />
               </div>
             )
           })}

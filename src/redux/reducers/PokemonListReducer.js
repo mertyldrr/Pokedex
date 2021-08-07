@@ -33,10 +33,13 @@ const PokemonListReducer = (state = initialState, action) => {
       const typesMap = action.payload.types.map((type) => {
         return type.type.name;
       })
+      // const spritesMap = action.payload.sprites.map((sprite) => {
+      //   return sprite.front_default;
+      // })
       return {
         ...state,
         data: state.data.map((pokemon) => pokemon.name === action.payload.name
-          ? { ...pokemon, types: typesMap }
+          ? { ...pokemon, types: typesMap, sprite: action.payload.sprites.front_default }
           : pokemon
         ),
         loading: false,

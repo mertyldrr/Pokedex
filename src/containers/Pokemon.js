@@ -37,18 +37,18 @@ const Pokemon = (props) => {
             <Row>
               <Col>
                 <h1>Stats</h1>
-                {pokemonData.stats.map((element) => {
+                {pokemonData.stats.map((element, index) => {
                   return (
-                    <p>{element.stat.name} {element.base_stat}</p>
+                    <p key={index}>{element.stat.name} {element.base_stat}</p>
                   )
                 })}
               </Col>
 
               <Col>
                 <h1>Abilities</h1>
-                {pokemonData.abilities.map((element) => {
+                {pokemonData.abilities.map((element, index) => {
                   return (
-                    <p>{element.ability.name}</p>
+                    <p key={index}>{element.ability.name}</p>
                   )
                 })}
               </Col>

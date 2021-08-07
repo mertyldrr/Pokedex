@@ -23,6 +23,7 @@ const PokemonList = () => {
 
   }, [fetchData]);
 
+
   const showData = () => {
 
     if (pokemonList.loading) {
@@ -35,7 +36,7 @@ const PokemonList = () => {
           {pokemonList.data.map((pokemon, index) => {
             return (
               <div className="pokemon-list-element p-1" key={index}>
-                <SinglePokemon name={pokemon.name} sprite={pokemon.sprite} />
+                <SinglePokemon name={pokemon.name} sprite={pokemon.sprite} type={pokemon.types && pokemon.types[0]} />
               </div>
             )
           })}

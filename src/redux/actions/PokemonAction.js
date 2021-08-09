@@ -47,7 +47,7 @@ export const GetPokemon = (pokemon) => async (dispatch) => {
     });
 
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
-    
+
     dispatch({
       type: "POKEMON_MULTIPLE_SUCCESS",
       payload: res.data,

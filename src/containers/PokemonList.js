@@ -4,6 +4,7 @@ import _ from "lodash";
 import { GetPokemonList } from '../redux/actions/PokemonAction';
 import ReactPaginate from 'react-paginate';
 import SinglePokemon from '../components/SinglePokemon';
+import Loader from "react-loader-spinner";
 import './PokemonList.css';
 
 const PokemonList = () => {
@@ -27,7 +28,15 @@ const PokemonList = () => {
   const showData = () => {
 
     if (pokemonList.loading) {
-      return <p>Loading...</p>
+      return (
+        <Loader className="d-flex align-items-center justify-content-center"
+          type="Circles"
+          color="#ffe031"
+          height={150}
+          width={150}
+          timeout={3000} //3 secs
+        />
+      );
     }
 
     if (!_.isEmpty(pokemonList.data)) {

@@ -15,11 +15,9 @@ const SinglePokemon = (props) => {
         break;
       case "water":
         color = water
-        //color = "#4592c4b3"
         break;
       case "fire":
         color = fire
-        // color = "#fd7d24ad";
         break;
       case "electric":
         color = electric
@@ -44,7 +42,6 @@ const SinglePokemon = (props) => {
         break;
       case "bug":
         color = bug
-        //color = "#729f3fbd"
         break;
       case "fairy":
         color = fairy

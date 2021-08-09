@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import routes from './routes';
-import NavigationBar from './containers/NavigationBar';
+import NavigationBar from './components/NavigationBar';
 
 function App() {
   return (

@@ -2,7 +2,7 @@ import {
   normal, fire, water, grass, flying, fighting,
   poison, electric, ground, rock, psychic, ice,
   bug, ghost, steel, dragon, dark, fairy
-} from '../constants/pokemonTypeColours';
+} from '../constants/PokemonTypeColours';
 
 const PickColor = (type) => {
   let color = "";

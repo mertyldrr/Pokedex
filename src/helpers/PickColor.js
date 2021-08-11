@@ -4,7 +4,7 @@ import {
   bug, ghost, steel, dragon, dark, fairy
 } from '../constants/pokemonTypeColours';
 
-const pickColor = (type) => {
+const PickColor = (type) => {
   let color = "";
   switch (type) {
     case "grass":
@@ -67,4 +67,4 @@ const pickColor = (type) => {
   return color;
 }
 
-export default pickColor;
+export default PickColor;

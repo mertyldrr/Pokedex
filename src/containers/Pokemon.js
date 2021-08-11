@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { Image, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetPokemon } from '../redux/actions/PokemonAction';
-import pickColor from '../helpers/pickColor';
+import PickColor from '../helpers/PickColor';
+import Loader from "react-loader-spinner";
 import _ from 'lodash';
 import './Pokemon.css';
 
@@ -23,7 +24,7 @@ const Pokemon = (props) => {
         <div className="pokemon-wrapper">
           <div className="item">
             <Row className="vh-100">
-              <Col style={{ backgroundColor: pickColor(type.types[0].type.name) }}>
+              <Col style={{ backgroundColor: PickColor(type.types[0].type.name) }}>
                 <h1>Normal</h1>
                 <Image src={pokemonData.sprites.front_default} alt="" />
                 <Image src={pokemonData.sprites.back_default} alt="" />
@@ -35,7 +36,7 @@ const Pokemon = (props) => {
                 })}
               </Col>
 
-              <Col style={{ backgroundColor: pickColor(type.types[1] ? type.types[1].type.name : type.types[0].type.name) }}>
+              <Col style={{ backgroundColor: PickColor(type.types[1] ? type.types[1].type.name : type.types[0].type.name) }}>
                 <h1>Shiny</h1>
                 <Image src={pokemonData.sprites.front_shiny} alt="" />
                 <Image src={pokemonData.sprites.back_shiny} alt="" />
@@ -54,7 +55,15 @@ const Pokemon = (props) => {
 
 
     if (pokemonState.loading)
-      return <p>Loading...</p>
+      return (
+        <Loader className="d-flex align-items-center justify-content-center"
+        type="Circles"
+        color="#ffe031"
+        height={150}
+        width={150}
+        timeout={3000} //3 secs
+      />
+      )
 
     if (pokemonState.errorMessage !== "")
       return <p>{pokemonState.errorMessage}</p>
